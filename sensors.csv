@@ -1,0 +1,4 @@
+id,sensor_id,x,y,mac_address,temperature,humidity,battery_level,date,time
+1,1,0,1,f2:92:ba:fe:c3:16,20,10,80,21/10/2020,23:00
+2,2,5,3,46:a6:50:dd:9f:db,13,20,90,21/10/2020,22:00
+3,3,8,6,a2:d8:db:1b:7d:4a,2,20,70,21/10/2020,21:00
