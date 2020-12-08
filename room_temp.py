@@ -10,10 +10,13 @@ df=pd.read_csv("sensors.csv")
 
 
 # print(x,y)
+plt.title('TEMPURATURE SERVICE - RTS')
+plt.xlabel('X_POSTION')
+plt.ylabel('Y_POSITION')
+plt.figure(figsize = (5,5)) # size of tab
+plt.hist2d(x=df['x'],y = df['y'], bins = 50,)
+# cmap=plt.cm.get_cmap('RuBu',6)
 
-plt.figure(figsize = (5,5)) # size of histogram
-plt.hist2d(x=df['x'],y = df['y'], bins = 50)
 
-
-plt.colorbar()
+plt.colorbar(label='Tempurature Values')
 plt.show()
