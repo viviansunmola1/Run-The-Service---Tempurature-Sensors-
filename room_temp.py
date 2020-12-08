@@ -11,7 +11,7 @@ df=pd.read_csv("sensors.csv")
 
 # print(x,y)
 
-plt.figure(figsize = (10,10)) # size of histogram
+plt.figure(figsize = (5,5)) # size of histogram
 plt.hist2d(x=df['x'],y = df['y'], bins = 50)
 
 
