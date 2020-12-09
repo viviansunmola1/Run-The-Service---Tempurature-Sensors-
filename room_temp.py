@@ -15,18 +15,12 @@ plt.xlabel('X_POSITION')
 plt.ylabel('Y_POSITION')
 plt.colorbar(label='Tempurature Values')
 
-blue_threshold = all(df['x'] <= 18)
-green_threshold = all(df['x']== range(19,26))
-amber_threshold = all(df['x'] == range(27,30))
-red_threshold = all(df['x'] > 30)
-print(blue_threshold)
+blue_threshold = range (1,18)
+green_threshold = range(19,26)
+amber_threshold = range(27,30)
+red_threshold = range(30, 100)
+yellow = None
 
 
-
-
-
-# cmap = matplotlib.colors.ListedColormap(['Blue', 'Green', 'Amber', 'Red', 'Yellow', 'Black'])
-
-
-# plt.show()
+plt.show()
 
