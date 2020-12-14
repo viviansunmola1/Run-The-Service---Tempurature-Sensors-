@@ -5,20 +5,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# read file
-df=pd.read_csv("sensors.csv")
+# read  sensor.csv file
+plot_col= ["id", "x", "y"]
+df=pd.read_csv("sensors.csv", usecols= plot_col, index_col= False)
+#save x and y values of each sensor in coordinates ==
+print(df)
 
-# get x and y colomns for each sensor 
-# get temp reading for each sensor 
+#read csv file == yes
+#save x and y values of each sensor in coordinates ==
+# save temp of each sensor in tempurature value ==
+# have color color values==
+#have temp thresholds = blue, red , green ,amber ,yellow==
+#if tempurature value is one of the threshold color==
+    #heatmap plot sensor coord + threshold color. ==
+ 
 
-
-plt.figure(figsize = (5,5)) # size of tab
-
-plt.hist2d(x=df['x'],y = df['y'], bins = 50,)
-plt.get_cmap('RdBu')
-plt.title('TEMPURATURE SERVICE - RTS')
-plt.xlabel('X_POSITION')
-plt.ylabel('Y_POSITION')
-
-plt.colorbar()
-plt.show()
