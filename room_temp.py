@@ -5,19 +5,32 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('sensors.csv')
-x = df['x']
-y = df['y']
-temp = df['tempurature']
+sensor = ((np.asarray(df['sensor_id'])).reshape(3,3))
+tempurature = ((np.asarray(df['tempurature'])).reshape(3,3))
 
+#temp thresholds
 blue = range(0, 10)
 red = range(11,20)
 
 #creating a pivot table 
 heatmap = df.pivot(index='y' ,columns= 'x', values = 'tempurature')
-print(heatmap)
+# temp = heatmap.values
+label = (np.asarray(["{0} \n{1:2.f}".format(sens,temp)
+                    for sens,temp in zip(sensor.flatten(), 
+                                            tempurature.flatten())]
+        ).reshape(3,3)
 
 
 
+#creating heatmap 
+fig,ax = plt.subplots(figsize=(3,3))
+
+title = "RTS Tempurature Sensors ENTS Labs"
+plt.title(title,fontsize=10)
+sb.heatmap(heatmap,annot=True, fmt="", cmap='RdY1Gn')
+
+
+plt.show()
 
 #read csv file == yes
 #save x and y values of each sensor in coordinates ==
