@@ -13,16 +13,16 @@ blue = range(0, 10)
 red = range(11,20)
 
 #creating a pivot table 
-heatmap = df.pivot(index='y' ,columns= 'x', values = 'tempurature')
-ts= sb.heatmap(heatmap)
-
+pivot_table = df.pivot(index='y' ,columns= 'x', values = 'tempurature')
+heatmap= sb.heatmap(pivot_table)
+title = "RTS Tempurature Sensors ENTS Labs"
+plt.title(title,fontsize=10)
 
 
 #creating heatmap 
 
 
-title = "RTS Tempurature Sensors ENTS Labs"
-plt.title(title,fontsize=10)
+
 # sb.heatmap(heatmap,annot=label, fmt="", cmap='RdY1Gn')
 
 
