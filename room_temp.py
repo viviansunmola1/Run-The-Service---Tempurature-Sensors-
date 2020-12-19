@@ -7,12 +7,14 @@ import matplotlib.pyplot as plt
 #read sensor.csv
 df = pd.read_csv('sensors.csv')
 
-#temp thresholds
-blue=range(0, 10)
-red=range(11,20)
+
 
 #creating a pivot table 
 pivot_table=df.pivot(index='y' ,columns= 'x', values = 'tempurature')
+
+#colorbar ranges
+crange= [0 18; 17 26; 27 30; 31 inf]
+cmap = rand(size(crange,1),3)
 
 #creating heatmap 
 heatmap=sb.heatmap(pivot_table, annot=True)
