@@ -4,29 +4,32 @@ import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
 
+#read sensor.csv
 df = pd.read_csv('sensors.csv')
-# sensor = ((np.asarray(df['sensor_id'])).reshape(3,3))
-# tempurature = ((np.asarray(df['tempurature'])).reshape(3,3))
 
 #temp thresholds
-blue = range(0, 10)
-red = range(11,20)
+blue=range(0, 10)
+red=range(11,20)
 
 #creating a pivot table 
-pivot_table = df.pivot(index='y' ,columns= 'x', values = 'tempurature')
-heatmap= sb.heatmap(pivot_table)
-title = "RTS Tempurature Sensors ENTS Labs"
+pivot_table=df.pivot(index='y' ,columns= 'x', values = 'tempurature')
+
+#creating heatmap 
+heatmap=sb.heatmap(pivot_table, annot=True)
+title="RTS Tempurature Sensors ENTS Labs"
 plt.title(title,fontsize=10)
 
 
-#creating heatmap 
 
 
 
-# sb.heatmap(heatmap,annot=label, fmt="", cmap='RdY1Gn')
 
 
 plt.show()
+# sb.heatmap(heatmap,annot=label, fmt="", cmap='RdY1Gn')
+
+
+
 
 #read csv file == yes
 #save x and y values of each sensor in coordinates ==
