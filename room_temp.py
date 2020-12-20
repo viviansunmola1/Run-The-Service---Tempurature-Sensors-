@@ -10,20 +10,17 @@ df = pd.read_csv('sensors.csv')
 
 
 #creating a pivot table 
+
 pivot_table=df.pivot(index='y' ,columns= 'x', values = 'tempurature')
+#annotate tempurature colomns
 
 #colorbar ranges
-crange= [0 18; 17 26; 27 30; 31 inf]
-cmap = rand(size(crange,1),3)
+
 
 #creating heatmap 
-heatmap=sb.heatmap(pivot_table, annot=True)
+heatmap=sb.heatmap(pivot_table, vmin = 0.0, vmax =  30.0, annot=True)
 title="RTS Tempurature Sensors ENTS Labs"
 plt.title(title,fontsize=10)
-
-
-
-
 
 
 
