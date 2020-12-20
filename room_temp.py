@@ -16,9 +16,11 @@ pivot_table=df.pivot(index='y' ,columns= 'x', values = 'tempurature')
 
 #colorbar ranges
 
+#creating a random cmap
+cmap = sb.color_palette("coolwarm", as_cmap=True)
 
 #creating heatmap 
-heatmap=sb.heatmap(pivot_table, vmin = 0.0, vmax =  30.0, annot=True)
+heatmap=sb.heatmap(pivot_table, vmin = 0.0, vmax =  30.0, cmap=cmap, annot=True)
 title="RTS Tempurature Sensors ENTS Labs"
 plt.title(title,fontsize=10)
 
