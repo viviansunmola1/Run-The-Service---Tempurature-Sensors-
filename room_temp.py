@@ -15,11 +15,16 @@ tk.title('Tempsensors')
 
 class ER_Options():
     def ER1():
-        df = pd.read_csv('ER1.csv')
-        pivot_table = df.pivot(index='Position_y' ,columns= 'Position_x', values = 'Tempurature')
-        heatmap= sb.heatmap(pivot_table)
-        title = "RTS Tempurature Sensors ENTS Labs"
-        plt.title(title,fontsize=10)
+        plt.plot([1,2,3,4])
+        plt.ylabel('some numbers')
+        plt.show()
+
+        # df = pd.read_csv('ER1.csv')
+        # pivot_table = df.pivot(index='Position_y' ,columns= 'Position_x', values = 'Tempurature')
+        # heatmap= sb.heatmap(pivot_table)
+        # title = "RTS Tempurature Sensors ENTS Labs"
+        # plt.title(title,fontsize=10)
+        # plt.show()
         
     def ER2():
         df = pd.read_csv('ER2.csv')
