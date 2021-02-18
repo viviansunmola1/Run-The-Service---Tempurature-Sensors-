@@ -3,41 +3,39 @@ import numpy as np
 import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
+from tkinter import*
 
-#read sensor.csv
-df = pd.read_csv('sensors.csv')
+#read from sensors file 
+er1 = pd.read_csv('ER1.csv')
+er2 = pd.read_csv('ER2.csv')
+er3 = pd.read_csv('ER3.csv')
 
+tk = Tk()
+tk.title('Tempsensors')
+def ER_Options():
+    exit()
 
+btn=Button(tk, text="ER1", 
+            command= ER_Options)
+btn.pack()
 
-#creating a pivot table 
+btn2= Button(tk, text="ER2",
+            command = ER_Options)
+btn2.pack()
 
-pivot_table=df.pivot(index='y' ,columns= 'x', values = 'tempurature')
-#annotate tempurature colomns
+btn3= Button(tk, text="ER3",
+            command = ER_Options)
+btn3.pack()
 
-#colorbar ranges
-
-#creating a random cmap
-cmap = sb.color_palette("coolwarm", as_cmap=True)
-
-#creating heatmap 
-heatmap=sb.heatmap(pivot_table, vmin = 0.0, vmax =  30.0, cmap=cmap, annot=True)
-title="RTS Tempurature Sensors ENTS Labs"
-plt.title(title,fontsize=10)
-
-
-
-plt.show()
-# sb.heatmap(heatmap,annot=label, fmt="", cmap='RdY1Gn')
-
-
+mainloop()
 
 
-#read csv file == yes
-#save x and y values of each sensor in coordinates ==
-# save temp of each sensor in tempurature value ==
-# have color color values==
-#have temp thresholds = blue, red , green ,amber ,yellow==
-#if tempurature value is one of the threshold color==
-    #heatmap plot sensor coord + threshold color. ==
- 
+
+
+
+
+
+
+
+
 
