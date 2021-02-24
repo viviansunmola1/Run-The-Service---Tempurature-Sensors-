@@ -3,17 +3,27 @@ import numpy as np
 import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.colors as colors
 from tkinter import*
 
 tk = Tk()
 tk.geometry('500x500')
 tk.title('ENTS Run The Service - Tempurature Sensors')
 
+newcolors = plt.get_cmap('viridis',100).colors
+
+newcolors[  : 18, :] = colors.to_rgba('blue')
+newcolors[18: 26, :] = colors.to_rgba('green')
+newcolors[27: 29, :] = colors.to_rgba('orange')
+newcolors[30:100, :] = colors.to_rgba('red')
+
+mycmap = colors.ListedColormap(newcolors)
+
 class ER_Options():
     def ER1():
         df = pd.read_csv('ER1.csv')
         pivot_table= df.pivot(index='Position_y' ,columns= 'Position_x', values = 'Tempurature')
-        heatmap= sb.heatmap(pivot_table, annot=False)
+        heatmap= sb.heatmap(pivot_table, annot=False, cmap=mycmap)
         heatmap.collections[0].colorbar.set_label("Tempurature Thresholds")
         title = "ER1 Server Room"
         plt.title(title,fontsize=10)
