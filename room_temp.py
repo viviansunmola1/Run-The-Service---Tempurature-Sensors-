@@ -7,13 +7,14 @@ from tkinter import*
 
 tk = Tk()
 tk.geometry('500x500')
-tk.title('Tempsensors')
+tk.title('ENTS Run The Service - Tempurature Sensors')
 
 class ER_Options():
     def ER1():
         df = pd.read_csv('ER1.csv')
         pivot_table= df.pivot(index='Position_y' ,columns= 'Position_x', values = 'Tempurature')
-        heatmap= sb.heatmap(pivot_table)
+        heatmap= sb.heatmap(pivot_table, annot=False)
+        heatmap.collections[0].colorbar.set_label("Tempurature Thresholds")
         title = "ER1 Server Room"
         plt.title(title,fontsize=10)
         plt.show()
@@ -35,7 +36,8 @@ class ER_Options():
         plt.show()
 
 def configButtons(): 
-    btn=Button(tk, text="ER1", 
+    btn=Button(tk, 
+                text="ER1", 
                 command= ER_Options.ER1,
                 height = 10, 
                 width = 10)
