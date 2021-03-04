@@ -12,8 +12,8 @@ tk.title('ENTS Run The Service - Tempurature Sensors')
 
 newcolors = plt.get_cmap('viridis',100).colors
 
-newcolors[0: 19, :] = colors.to_rgba('blue')
-newcolors[19: 27, :] = colors.to_rgba('green')
+newcolors[0: 18, :] = colors.to_rgba('blue')
+newcolors[18: 26, :] = colors.to_rgba('green')
 newcolors[27: 30] = colors.to_rgba('orange')
 newcolors[30:100, :] = colors.to_rgba('red')
 
@@ -22,32 +22,33 @@ mycmap = colors.ListedColormap(newcolors)
 class ER_Options():
     def ER1():
         df = pd.read_csv('ER1.csv')
-        
-        roundplaces = np.round(df['Tempurature'], 
-                       decimals = 2) 
 
+         #FORMATING TEMPURATURE TO 1 DECIMAL PLACE 
+
+        # roundplaces = np.round(df['Tempurature'], 
+        #                decimals = 1) 
+        values = ['Tempurature{:02d}'.format]
+
+        
         pivot_table= df.pivot(index='Position_y',
                             columns= 'Position_x', 
-                            values = 'Tempurature')
+                            values = values)
 
         heatmap= sb.heatmap(pivot_table,
                             annot=True,
                             cmap=mycmap,
-                            cbar_kws= {'pad': .02, 'ticks': [0,19, 27, 30, 100], })
-        
-         
-        
-        print(roundplaces) 
-        
+                            fmt=".1f"
+                            cbar_kws= {'pad': .03, 'ticks': [0,18, 26, 27, 30, 100], })
+    
 
         heatmap.collections[0].colorbar.set_label("Tempurature Thresholds")
         plt.gca().invert_yaxis()
 
-       
-
+    
         title = "ER1 Server Room"
         plt.title(title,fontsize=10)
         plt.show()
+
         
     def ER2():
         df = pd.read_csv('ER2.csv')
