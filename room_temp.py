@@ -22,14 +22,23 @@ mycmap = colors.ListedColormap(newcolors)
 class ER_Options():
     def ER1():
         df = pd.read_csv('ER1.csv')
+        
+        roundplaces = np.round(df['Tempurature'], 
+                       decimals = 2) 
+
         pivot_table= df.pivot(index='Position_y',
                             columns= 'Position_x', 
                             values = 'Tempurature')
 
         heatmap= sb.heatmap(pivot_table,
-                            annot=False,
+                            annot=True,
                             cmap=mycmap,
                             cbar_kws= {'pad': .02, 'ticks': [0,19, 27, 30, 100], })
+        
+         
+        
+        print(roundplaces) 
+        
 
         heatmap.collections[0].colorbar.set_label("Tempurature Thresholds")
         plt.gca().invert_yaxis()
