@@ -44,8 +44,6 @@ class ER_Options():
         plt.title(title,fontsize=10)
         plt.show()
 
-       
-
         
     def ER2():
         df = pd.read_csv('ER2.csv')
@@ -69,9 +67,21 @@ class ER_Options():
         
     def ER3():
         df = pd.read_csv('ER3.csv')
-        pivot_table= df.pivot(index='Position_y' ,columns= 'Position_x', values = 'Temperature')
-        heatmap= sb.heatmap(pivot_table)
-        title = "ER3 Server Room"
+        pivot_table= df.pivot(index='Position_y',
+                            columns= 'Position_x', 
+                            values = 'Temperature')
+
+        heatmap= sb.heatmap(pivot_table,
+                            annot=True,
+                            cmap='rainbow',
+                            fmt = ".1f",
+                            cbar_kws= {'pad': .03, 'ticks': [0,18, 26, 27, 30, 100], })
+
+
+        heatmap.collections[0].colorbar.set_label("Temperature Thresholds")
+        plt.gca().invert_yaxis()
+
+        title = "ER1 Server Room"
         plt.title(title,fontsize=10)
         plt.show()
 
