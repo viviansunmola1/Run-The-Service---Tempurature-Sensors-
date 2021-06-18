@@ -1,11 +1,13 @@
 import csv 
+import missingno as msno
 import numpy as np
+from numpy.lib.function_base import piecewise
 import seaborn as sb
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import tkinter as t
-from tkinter import*
+from tkinter import *
 
 tk = Tk()
 tk.geometry('500x500')
@@ -30,19 +32,29 @@ class ER_Options():
                             columns= 'Position_x', 
                             values = 'Temperature')
 
+       
+        pivot_table = pivot_table.replace(r'^\s*$', np.nan, regex=True)
+        pivot_table = pivot_table.astype(float)
+        pivot_table.fillna(0, inplace=True)
+    
+
         heatmap= sb.heatmap(pivot_table,
                             annot=True,
                             cmap='rainbow',
                             fmt = ".1f",
                             cbar_kws= {'pad': .03, 'ticks': [0,18, 26, 27, 30, 100], })
-    
+
 
         heatmap.collections[0].colorbar.set_label("Temperature Thresholds")
         plt.gca().invert_yaxis()
 
         title = "ER1 Server Room"
         plt.title(title,fontsize=10)
+
+        
         plt.show()
+        
+        
 
         
     def ER2():
@@ -61,7 +73,7 @@ class ER_Options():
         heatmap.collections[0].colorbar.set_label("Temperature Thresholds")
         plt.gca().invert_yaxis()
 
-        title = "ER1 Server Room"
+        title = "ER2 Server Room"
         plt.title(title,fontsize=10)
         plt.show()
         
@@ -80,8 +92,9 @@ class ER_Options():
 
         heatmap.collections[0].colorbar.set_label("Temperature Thresholds")
         plt.gca().invert_yaxis()
+    
 
-        title = "ER1 Server Room"
+        title = "ER3 Server Room"
         plt.title(title,fontsize=10)
         plt.show()
 
