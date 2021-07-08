@@ -13,15 +13,22 @@ tk = Tk()
 tk.geometry('500x500')
 tk.title('ENTS Run The Service - Temperature Sensors')
 
-newcolors = plt.get_cmap('viridis',100).colors
 
+newcolors = plt.get_cmap('viridis',36).colors
 
-newcolors[0: 18, :] = colors.to_rgba('blue')
-newcolors[18: 26, :] = colors.to_rgba('green')
-newcolors[27: 30] = colors.to_rgba('orange')
-newcolors[30:100, :] = colors.to_rgba('red')
+# newcolors[0: 18, :] = colors.to_rgba('blue')
+# newcolors[18: 26, :] = colors.to_rgba('green')
+# newcolors[27: 30] = colors.to_rgba('orange')
+# newcolors[30:100, :] = colors.to_rgba('red')
+# mycmap = colors.ListedColormap(newcolors)
+
+newcolors[0] = colors.to_rgba('black')
+newcolors[1:26] = colors.to_rgba('green')
+newcolors[26:30 ] = colors.to_rgba('orange')
+newcolors[30:] = colors.to_rgba('red')
 
 mycmap = colors.ListedColormap(newcolors)
+
 
 
 
@@ -36,13 +43,13 @@ class ER_Options():
         pivot_table = pivot_table.replace(r'^\s*$', np.nan, regex=True)
         pivot_table = pivot_table.astype(float)
         pivot_table.fillna(0, inplace=True)
-    
+        
 
         heatmap= sb.heatmap(pivot_table,
                             annot=True,
-                            cmap='rainbow',
+                            cmap=mycmap,
                             fmt = ".1f",
-                            cbar_kws= {'pad': .03, 'ticks': [0,18, 26, 27, 30, 100], })
+                            cbar_kws= {'pad': .01, 'ticks': [0,1, 26, 30], })
 
 
         heatmap.collections[0].colorbar.set_label("Temperature Thresholds")
@@ -53,15 +60,18 @@ class ER_Options():
 
         
         plt.show()
-        
-        
 
-        
+
+
     def ER2():
         df = pd.read_csv('ER2.csv')
         pivot_table= df.pivot(index='Position_y',
                             columns= 'Position_x', 
                             values = 'Temperature')
+
+        pivot_table = pivot_table.replace(r'^\s*$', np.nan, regex=True)
+        pivot_table = pivot_table.astype(float)
+        pivot_table.fillna(0, inplace=True)
 
         heatmap= sb.heatmap(pivot_table,
                             annot=True,
