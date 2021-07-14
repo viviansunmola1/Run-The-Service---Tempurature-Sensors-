@@ -30,8 +30,6 @@ newcolors[30:] = colors.to_rgba('red')
 mycmap = colors.ListedColormap(newcolors)
 
 
-
-
 class ER_Options():
     def ER1():
         df = pd.read_csv('ER1.csv')
@@ -44,12 +42,24 @@ class ER_Options():
         pivot_table = pivot_table.astype(float)
         pivot_table.fillna(0, inplace=True)
         
+    
 
         heatmap= sb.heatmap(pivot_table,
                             annot=True,
                             cmap=mycmap,
                             fmt = ".1f",
                             cbar_kws= {'pad': .01, 'ticks': [0,1, 26, 30], })
+
+        for Tempurature in pivot_table.to_records():
+            print(Tempurature)
+            try:
+                if 28 in pivot_table:
+                    print("NaN value found")
+                else:
+                    print("NaN values is not in this field")
+            except Exception as e:
+                newcolors[2] = colors.to_rgba('purple')
+
 
 
         heatmap.collections[0].colorbar.set_label("Temperature Thresholds")
@@ -97,7 +107,7 @@ class ER_Options():
                             annot=True,
                             cmap='rainbow',
                             fmt = ".1f",
-                            cbar_kws= {'pad': .03, 'ticks': [0,18, 26, 27, 30, 100], })
+                            cbar_kws= {'pad': .01, 'ticks': [0,18, 26, 27, 30, 100], })
 
 
         heatmap.collections[0].colorbar.set_label("Temperature Thresholds")
